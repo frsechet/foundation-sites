@@ -73,6 +73,11 @@ $global-font-size: 100% !default;
 ///
 /// @returns {Number} A number in rems, calculated based on the given value and the base pixel value. rem values are passed through as is.
 @function -zf-to-rem($value, $base: null) {
+  // Keep 'auto' untouched
+  @if $value == 'auto' {
+    @return $value;
+  }
+
   // Check if the value is a number
   @if type-of($value) != 'number' {
     @warn inspect($value) + ' was passed to rem-calc(), which is not a number.';

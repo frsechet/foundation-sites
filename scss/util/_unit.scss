@@ -75,6 +75,10 @@ $global-font-size: 100% !default;
 @function -zf-to-rem($value, $base: null) {
   // Check if the value is a number
   @if type-of($value) != 'number' {
+    // Keep 'auto', 'transparent' and 'solid' untouched
+    @if inspect($value) == 'auto' or inspect($value) == 'transparent' or inspect($value) == 'solid' {
+      @return $value;
+    }
     @warn inspect($value) + ' was passed to rem-calc(), which is not a number.';
     @return $value;
   }
